@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Knowledge Library</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+/* Navigation */
+nav{
+    background:#1f3c88;
+    color:white;
+    padding:15px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:25px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+header{
+    text-align:center;
+    padding:40px;
+    background:linear-gradient(to right,#1f3c88,#4e73df);
+    color:white;
+}
+
+/* Search Section */
+.search-container{
+    background:white;
+    padding:20px;
+    margin:20px;
+    border-radius:10px;
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:15px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.search-container input,
+.search-container select{
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+.search-container button{
+    grid-column:1/4;
+    padding:12px;
+    background:#1f3c88;
+    color:white;
+    border:none;
+    cursor:pointer;
+    border-radius:5px;
+}
+
+/* Categories */
+.categories{
+    padding:20px;
+}
+
+.category-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:20px;
+}
+
+.category-card{
+    background:white;
+    text-align:center;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.category-card h3{
+    color:#1f3c88;
+}
+
+/* Books Grid */
+.books{
+    padding:20px;
+}
+
+.book-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.book-card{
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.book-card img{
+    width:100%;
+    height:300px;
+    object-fit:cover;
+    border-radius:8px;
+}
+
+.book-card h3{
+    margin-top:10px;
+    color:#1f3c88;
+}
+
+.author{
+    color:#555;
+    margin:8px 0;
+}
+
+.available{
+    background:#28a745;
+    color:white;
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:14px;
+}
+
+.borrowed{
+    background:#dc3545;
+    color:white;
+    padding:5px 10px;
+    border-radius:20px;
+    font-size:14px;
+}
+
+/* Catalog Table */
+.catalog{
+    padding:20px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+}
+
+th{
+    background:#1f3c88;
+    color:white;
+    padding:12px;
+}
+
+td{
+    padding:12px;
+    border:1px solid #ccc;
+    text-align:center;
+}
+
+tr:nth-child(even){
+    background:#f8f9fa;
+}
+
+/* Rules */
+.rules{
+    margin:20px;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.rules ul{
+    margin-left:25px;
+    margin-top:10px;
+}
+
+footer{
+    background:#1f3c88;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<h2>Knowledge Library</h2>
+
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#">Catalog</a></li>
+<li><a href="#">Categories</a></li>
+<li><a href="#">Rules</a></li>
+<li><a href="#">Contact</a></li>
+</ul>
+</nav>
+
+<header>
+<h1>Digital Library Management System</h1>
+<p>Browse, Search and Discover Your Next Favorite Book</p>
+</header>
+
+<!-- Search Interface -->
+
+<section class="search-container">
+<input type="text" placeholder="Search books, authors, ISBN">
+
+<select>
+<option>All Categories</option>
+<option>Fiction</option>
+<option>Science</option>
+<option>Technology</option>
+<option>History</option>
+</select>
+
+<select>
+<option>Availability</option>
+<option>Available</option>
+<option>Checked Out</option>
+</select>
+
+<button>Search Books</button>
+</section>
+
+<!-- Categories -->
+
+<section class="categories">
+
+<h2>Book Categories</h2>
+
+<div class="category-grid">
+
+<div class="category-card">
+<h3>Fiction</h3>
+<p>Novels and Literature</p>
+</div>
+
+<div class="category-card">
+<h3>Science</h3>
+<p>Research & Discoveries</p>
+</div>
+
+<div class="category-card">
+<h3>Technology</h3>
+<p>Programming & IT</p>
+</div>
+
+<div class="category-card">
+<h3>History</h3>
+<p>Ancient to Modern Events</p>
+</div>
+
+<div class="category-card">
+<h3>Biography</h3>
+<p>Inspirational Lives</p>
+</div>
+
+</div>
+</section>
+
+<!-- Book Display -->
+
+<section class="books">
+
+<h2>Featured Books</h2>
+
+<div class="book-grid">
+
+<div class="book-card">
+<img src="https://via.placeholder.com/300x400" alt="Book Cover">
+<h3>The Great Adventure</h3>
+<p class="author">Author: John Smith</p>
+<p>Category: Fiction</p>
+<br>
+<span class="available">Available</span>
+</div>
+
+<div class="book-card">
+<img src="https://via.placeholder.com/300x400" alt="Book Cover">
+<h3>Modern Science</h3>
+<p class="author">Author: Sarah Wilson</p>
+<p>Category: Science</p>
+<br>
+<span class="borrowed">Checked Out</span>
+</div>
+
+<div class="book-card">
+<img src="https://via.placeholder.com/300x400" alt="Book Cover">
+<h3>Web Development Guide</h3>
+<p class="author">Author: David Brown</p>
+<p>Category: Technology</p>
+<br>
+<span class="available">Available</span>
+</div>
+
+</div>
+
+</section>
+
+<!-- Catalog Table -->
+
+<section class="catalog">
+
+<h2>Library Catalog</h2>
+<br>
+
+<table>
+
+<tr>
+<th>Book ID</th>
+<th>Title</th>
+<th>Author</th>
+<th>Category</th>
+<th>Year</th>
+<th>Status</th>
+</tr>
+
+<tr>
+<td>B101</td>
+<td>The Great Adventure</td>
+<td>John Smith</td>
+<td>Fiction</td>
+<td>2022</td>
+<td>Available</td>
+</tr>
+
+<tr>
+<td>B102</td>
+<td>Modern Science</td>
+<td>Sarah Wilson</td>
+<td>Science</td>
+<td>2021</td>
+<td>Checked Out</td>
+</tr>
+
+<tr>
+<td>B103</td>
+<td>Web Development Guide</td>
+<td>David Brown</td>
+<td>Technology</td>
+<td>2023</td>
+<td>Available</td>
+</tr>
+
+<tr>
+<td>B104</td>
+<td>World History</td>
+<td>Emily Davis</td>
+<td>History</td>
+<td>2020</td>
+<td>Available</td>
+</tr>
+
+</table>
+
+</section>
+
+<!-- Library Rules -->
+
+<section class="rules">
+
+<h2>Library Rules</h2>
+
+<ul>
+<li>Maintain silence inside the library.</li>
+<li>Carry library identification while borrowing books.</li>
+<li>Books must be returned by the due date.</li>
+<li>Damaged or lost books must be replaced.</li>
+<li>Food and beverages are not permitted.</li>
+<li>Use library resources responsibly.</li>
+</ul>
+
+</section>
+
+<footer>
+<p>&copy; 2026 Knowledge Library | Library Management System</p>
+</footer>
+
+</body>
+</html>
