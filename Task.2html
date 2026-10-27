@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Travel Booking System</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+}
+
+/* Header */
+header{
+    background:#0d6efd;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+header h1{
+    font-size:32px;
+}
+
+/* Booking Form */
+.booking-container{
+    max-width:1200px;
+    margin:30px auto;
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:15px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+}
+
+label{
+    margin-bottom:6px;
+    font-weight:bold;
+}
+
+input,select{
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:6px;
+}
+
+.search-btn{
+    background:#0d6efd;
+    color:white;
+    border:none;
+    padding:12px;
+    margin-top:20px;
+    width:100%;
+    border-radius:6px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.search-btn:hover{
+    background:#084cb5;
+}
+
+/* Travel Cards */
+.cards-section{
+    max-width:1200px;
+    margin:30px auto;
+}
+
+.cards-section h2{
+    margin-bottom:15px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    border-radius:12px;
+    overflow:hidden;
+    box-shadow:0 3px 10px rgba(0,0,0,.1);
+}
+
+.card img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:15px;
+}
+
+.card-content h3{
+    color:#0d6efd;
+}
+
+.book-btn{
+    background:#28a745;
+    color:white;
+    border:none;
+    padding:10px 15px;
+    margin-top:10px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+/* Fare Table */
+.table-section{
+    max-width:1200px;
+    margin:30px auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+}
+
+table th{
+    background:#0d6efd;
+    color:white;
+    padding:12px;
+}
+
+table td{
+    padding:10px;
+    border:1px solid #ddd;
+    text-align:center;
+}
+
+/* Services */
+.services{
+    max-width:1200px;
+    margin:30px auto;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+}
+
+.services ul{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    list-style:none;
+    gap:10px;
+}
+
+.services li{
+    background:#eef5ff;
+    padding:10px;
+    border-radius:6px;
+}
+
+/* Seat Selection */
+.seat-layout{
+    max-width:900px;
+    margin:30px auto;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+}
+
+.seats{
+    display:grid;
+    grid-template-columns:repeat(4,60px);
+    gap:12px;
+    justify-content:center;
+}
+
+.seat{
+    width:60px;
+    height:60px;
+    background:#28a745;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.booked{
+    background:#dc3545;
+}
+
+.selected{
+    background:#ffc107;
+    color:black;
+}
+
+/* Responsive */
+@media(max-width:768px){
+    header h1{
+        font-size:24px;
+    }
+
+    .seats{
+        grid-template-columns:repeat(4,50px);
+    }
+
+    .seat{
+        width:50px;
+        height:50px;
+    }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <h1>✈ Travel Booking Portal</h1>
+    <p>Book Flights, Trains, and Buses Easily</p>
+</header>
+
+<!-- Booking Form -->
+<section class="booking-container">
+
+<h2>Search Journey</h2>
+
+<div class="form-grid">
+
+<div class="form-group">
+<label>Source</label>
+<input type="text" placeholder="Enter Source City">
+</div>
+
+<div class="form-group">
+<label>Destination</label>
+<input type="text" placeholder="Enter Destination City">
+</div>
+
+<div class="form-group">
+<label>Departure Date</label>
+<input type="date">
+</div>
+
+<div class="form-group">
+<label>Return Date</label>
+<input type="date">
+</div>
+
+<div class="form-group">
+<label>Passengers</label>
+<select>
+<option>1 Passenger</option>
+<option>2 Passengers</option>
+<option>3 Passengers</option>
+<option>4+ Passengers</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Travel Class</label>
+<select>
+<option>Economy</option>
+<option>Business</option>
+<option>First Class</option>
+</select>
+</div>
+
+</div>
+
+<button class="search-btn">Search Available Trips</button>
+
+</section>
+
+<!-- Booking Cards -->
+<section class="cards-section">
+
+<h2>Available Travel Options</h2>
+
+<div class="cards">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800" alt="">
+<div class="card-content">
+<h3>Air India</h3>
+<p>Delhi ➜ Mumbai</p>
+<p>Departure: 08:00 AM</p>
+<p>Fare: ₹4,500</p>
+<button class="book-btn">Book Now</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=800" alt="">
+<div class="card-content">
+<h3>Express Train</h3>
+<p>Delhi ➜ Jaipur</p>
+<p>Departure: 10:30 AM</p>
+<p>Fare: ₹1,200</p>
+<button class="book-btn">Book Now</button>
+</div>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800" alt="">
+<div class="card-content">
+<h3>Luxury Bus</h3>
+<p>Bhopal ➜ Indore</p>
+<p>Departure: 09:00 PM</p>
+<p>Fare: ₹800</p>
+<button class="book-btn">Book Now</button>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- Fare Table -->
+<section class="table-section">
+
+<h2>Fare Information</h2>
+
+<table>
+<tr>
+<th>Service</th>
+<th>Route</th>
+<th>Class</th>
+<th>Fare</th>
+</tr>
+
+<tr>
+<td>Flight</td>
+<td>Delhi - Mumbai</td>
+<td>Economy</td>
+<td>₹4,500</td>
+</tr>
+
+<tr>
+<td>Train</td>
+<td>Delhi - Jaipur</td>
+<td>AC 3 Tier</td>
+<td>₹1,200</td>
+</tr>
+
+<tr>
+<td>Bus</td>
+<td>Bhopal - Indore</td>
+<td>Sleeper</td>
+<td>₹800</td>
+</tr>
+
+</table>
+
+</section>
+
+<!-- Services -->
+<section class="services">
+
+<h2>Available Services</h2>
+
+<ul>
+<li>✅ Free Wi-Fi</li>
+<li>✅ Meal Included</li>
+<li>✅ Extra Luggage</li>
+<li>✅ Travel Insurance</li>
+<li>✅ Priority Boarding</li>
+<li>✅ Live Tracking</li>
+</ul>
+
+</section>
+
+<!-- Seat Layout -->
+<section class="seat-layout">
+
+<h2>Seat Selection</h2>
+
+<div class="seats">
+<div class="seat">1A</div>
+<div class="seat">1B</div>
+<div class="seat booked">1C</div>
+<div class="seat">1D</div>
+
+<div class="seat">2A</div>
+<div class="seat selected">2B</div>
+<div class="seat">2C</div>
+<div class="seat booked">2D</div>
+
+<div class="seat">3A</div>
+<div class="seat">3B</div>
+<div class="seat">3C</div>
+<div class="seat">3D</div>
+</div>
+
+<p style="text-align:center;margin-top:15px;">
+🟢 Available | 🟡 Selected | 🔴 Booked
+</p>
+
+</section>
+
+</body>
+</html>
